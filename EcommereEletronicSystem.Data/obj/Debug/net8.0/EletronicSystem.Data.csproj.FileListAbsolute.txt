@@ -1,0 +1,13 @@
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\bin\Debug\net8.0\EletronicSystem.Data.deps.json
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\bin\Debug\net8.0\EletronicSystem.Data.dll
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\bin\Debug\net8.0\EletronicSystem.Data.pdb
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.csproj.AssemblyReference.cache
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.AssemblyInfoInputs.cache
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.AssemblyInfo.cs
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.csproj.CoreCompileInputs.cache
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.sourcelink.json
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.dll
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\refint\EletronicSystem.Data.dll
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\EletronicSystem.Data.pdb
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EcommereEletronicSystem.Data\obj\Debug\net8.0\ref\EletronicSystem.Data.dll

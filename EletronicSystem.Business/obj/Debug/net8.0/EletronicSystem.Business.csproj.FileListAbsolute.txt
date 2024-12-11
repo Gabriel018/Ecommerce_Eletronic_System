@@ -1,0 +1,12 @@
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\bin\Debug\net8.0\EletronicSystem.Business.deps.json
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\bin\Debug\net8.0\EletronicSystem.Business.dll
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\bin\Debug\net8.0\EletronicSystem.Business.pdb
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\EletronicSystem.Business.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\EletronicSystem.Business.AssemblyInfoInputs.cache
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\EletronicSystem.Business.AssemblyInfo.cs
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\EletronicSystem.Business.csproj.CoreCompileInputs.cache
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\EletronicSystem.Business.sourcelink.json
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\EletronicSystem.Business.dll
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\refint\EletronicSystem.Business.dll
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\EletronicSystem.Business.pdb
+C:\Users\gabri\Ecommerce_Eletronic_System\EletronicSystem.Web\EletronicSystem.Business\obj\Debug\net8.0\ref\EletronicSystem.Business.dll
