@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P1CesohrAntFX13QPkOA/4UpWswmiqUpJ/SIn+N5GQQjE43YeSAPNuyYlaDNFTJdVS4Nlt9OYSUuJE3n11TXqw==",
+  "dgSpecHash": "D831s+2nbf9LtAR+bWVD5vePvkTdTt+qPOPpIOXIX9Bz4ddPO3PR1MtA0agID9LPQeGedGjRkXzWbVnheGIpFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gabri\\Ecommerce_Eletronic_System\\EcommereEletronicSystem.Data\\EletronicSystem.Data.csproj",
+  "projectFilePath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\Ecommerce_Eletronic_System\\EcommereEletronicSystem.Data\\EletronicSystem.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gabri\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
