@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using EletronicSystem.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EletronicSystem.Data.Data.Contexts
@@ -9,5 +10,9 @@ namespace EletronicSystem.Data.Data.Contexts
             : base(options)
         {
         }
-    }
+
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+    };
+
 }
