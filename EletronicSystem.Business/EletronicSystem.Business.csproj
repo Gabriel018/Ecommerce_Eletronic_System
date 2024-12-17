@@ -14,9 +14,15 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
-    <Folder Include="Configurations\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EcommereEletronicSystem.Data\EletronicSystem.Data.csproj" />
+    <ProjectReference Include="..\EletronicSystem.Domain\EletronicSystem.Domain.csproj" />
   </ItemGroup>
 
 </Project>
