@@ -18,7 +18,17 @@ namespace EletronicSystem.Domain.Repository
 
         public async Task<IEnumerable<TEntity>> ObterTodos()
         {
-            return await _DbSet.ToListAsync();
+            try
+            {
+                var obj = await _DbSet.ToListAsync();
+                return obj;
+            }
+
+            catch(Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public async Task<TEntity> ObterPorId(int id)
@@ -67,7 +77,7 @@ namespace EletronicSystem.Domain.Repository
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _Db?.DisposeAsync();
         }
     }
 }
