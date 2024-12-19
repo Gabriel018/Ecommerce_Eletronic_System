@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\NovaPasta1\**" />
+    <Content Remove="wwwroot\NovaPasta1\**" />
+    <EmbeddedResource Remove="wwwroot\NovaPasta1\**" />
+    <None Remove="wwwroot\NovaPasta1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.2" />
@@ -22,6 +29,10 @@
     <ProjectReference Include="..\EcommereEletronicSystem.Data\EletronicSystem.Data.csproj" />
     <ProjectReference Include="..\EletronicSystem.Business\EletronicSystem.Business.csproj" />
     <ProjectReference Include="..\EletronicSystem.Domain\EletronicSystem.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Img\" />
   </ItemGroup>
 
 </Project>

@@ -18,5 +18,24 @@ html {
 }
 
 body {
+  background-color:cornsilk;
   margin-bottom: 60px;
+}
+
+.container-caroussel {
+    display: flex !important;
+    justify-content: center !important;
+    align-items:center;
+    height: 600px;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.card-img-top{
+    height:120px;
+    width:120px;
+}
+
+.card {
+    margin: 10px; 
 }
