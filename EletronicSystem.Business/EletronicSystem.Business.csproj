@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTO\**" />
     <Compile Remove="Validation\**" />
+    <EmbeddedResource Remove="DTO\**" />
     <EmbeddedResource Remove="Validation\**" />
+    <None Remove="DTO\**" />
     <None Remove="Validation\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DTO\" />
   </ItemGroup>
 
   <ItemGroup>

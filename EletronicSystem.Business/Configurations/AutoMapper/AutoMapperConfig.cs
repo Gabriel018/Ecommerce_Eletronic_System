@@ -10,6 +10,7 @@ namespace EletronicSystem.Business.Configurations.AutoMapper
 
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
             CreateMap<Produto, ProdutoViewModel>().ReverseMap();
+            CreateMap<Usuario, UsuarioViewModel>().ReverseMap();
         }
     }
 }

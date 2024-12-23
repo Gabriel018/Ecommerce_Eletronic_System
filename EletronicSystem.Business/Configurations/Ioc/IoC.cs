@@ -12,6 +12,7 @@ namespace EletronicSystem.Business.Configurations.Ioc
         {
             services.AddScoped<IClienteService,ClienteService>();
             services.AddScoped<IProdutoService,ProdutoService>();
+            services.AddScoped<IUsuarioService,UsuarioService>();
 
             return services;
         }

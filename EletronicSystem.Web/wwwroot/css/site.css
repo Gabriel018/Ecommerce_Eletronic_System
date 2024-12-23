@@ -17,11 +17,6 @@ html {
   min-height: 100%;
 }
 
-body {
-  background-color:cornsilk;
-  margin-bottom: 60px;
-}
-
 .container-caroussel {
     display: flex !important;
     justify-content: center !important;
