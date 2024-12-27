@@ -47,7 +47,7 @@ namespace EletronicSystem.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("EletronicSystem.Domain.Entities.Produto", b =>
@@ -72,7 +72,7 @@ namespace EletronicSystem.Web.Data.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Produtos", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

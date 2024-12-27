@@ -1,5 +1,6 @@
 ﻿using EletronicSystem.Business.ViewModels;
 using EletronicSystem.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace EletronicSystem.Business.Services.Interface
 {
@@ -7,7 +8,7 @@ namespace EletronicSystem.Business.Services.Interface
     {
         Task<ICollection<UsuarioViewModel>> ObterTodos();
         Task<UsuarioViewModel> ObterPorId(Guid id);
-        Task<Usuario> Criar(Usuario usuario);
+        Task<IdentityResult> Criar(UsuarioViewModel usuario);
         Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuario);
         Task<UsuarioViewModel> Deletar(UsuarioViewModel usuario);   
     }

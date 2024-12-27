@@ -1,6 +1,7 @@
 using EletronicSystem.Business.Configurations.AutoMapper;
 using EletronicSystem.Business.Configurations.Ioc;
 using EletronicSystem.Data.Data.Contexts;
+using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,14 +22,19 @@ else
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddDefaultIdentity<Usuario>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 builder.Services.AddServices();
 builder.Services.AddRepositories();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 

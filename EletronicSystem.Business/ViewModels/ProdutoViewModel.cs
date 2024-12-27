@@ -1,6 +1,6 @@
 ﻿namespace EletronicSystem.Business.ViewModels
 {
-    public class ProdutoViewModel
+    public class ProdutoViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
         public string? Descricao { get; set; }

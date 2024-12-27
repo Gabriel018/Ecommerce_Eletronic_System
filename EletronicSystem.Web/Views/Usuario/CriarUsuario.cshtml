@@ -1,1 +1,38 @@
-﻿<h1>Criar Usuario</h1>
+﻿@model EletronicSystem.Business.ViewModels.UsuarioViewModel
+<h1>Criar novo Usuario</h1>
+
+
+<div class="container">
+    <div class="col-5">
+        <form method="post" enctype="multipart/form-data">
+            <label class="form-label">Nome</label>
+            <input asp-for="Nome" class="form-control">
+            <label class="form-label">CPF</label>
+            <input asp-for="CPF" class="form-control form-control-sm">
+            <label class="form-label">Email</label>
+            <input asp-for="UserName" class="form-control" />
+            <label class="form-label">Data Nascimento</label>
+            <input asp-for="DataNascimento" class="form-control">
+            <label class="form-label">Endereco</label>
+            <input asp-for="Endereco" class="form-control">
+            <button type="submit" class="btn-primary mt-2" asp-controller="Usuario" asp-action="NovoUsuario">Enviar</button>
+        </form>
+    </div>
+
+    @if (TempData["Msg"] != null)
+    {
+        var msg = TempData["Msg"].ToString();
+        if (msg.Contains("efetuado"))
+        {
+            <div class="alert-success">
+                @msg
+            </div>
+        }
+        else if (msg.Contains("Erro"))
+        {
+            <disv class="alert-danger">
+                @msg
+            </disv>
+        }
+    }
+</div>

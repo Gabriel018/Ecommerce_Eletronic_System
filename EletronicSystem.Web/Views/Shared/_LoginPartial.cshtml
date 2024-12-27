@@ -1,6 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+﻿@using EletronicSystem.Domain.Entities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
@@ -17,7 +18,7 @@
 else
 {
     <li class="nav-item">
-            <a class="nav-link text-light" asp-controller="Usuario"  asp-action="CriarUsuario">Registrar-se</a>
+            <a class="nav-link text-light" asp-controller="Usuario" asp-action="CriarUsuario">Registrar-se</a>
     </li>
     <li class="nav-item">
             <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
