@@ -30,8 +30,8 @@ namespace EletronicSystem.Business.Services
         public async Task<IdentityResult> Criar(UsuarioViewModel usuarioViewModel)
         {
             var usuario = _mapper.Map<Usuario>(usuarioViewModel);
-            usuario.Email = usuario.UserName; // Atribuindo o UserName ao Email
-            usuario.EmailConfirmed = true; // Confirmando o email automaticamente
+            usuario.Email = usuario.UserName; 
+            usuario.EmailConfirmed = true; 
 
             try
             {
@@ -45,7 +45,9 @@ namespace EletronicSystem.Business.Services
                 else
                 {
                     usuarioViewModel.OperacaoValida = false;
-                    return resultado; // Retorna os erros específicos do Identity
+                    Console.WriteLine(resultado.Errors);
+
+                    return resultado; 
                 }
             }
             catch (Exception ex)

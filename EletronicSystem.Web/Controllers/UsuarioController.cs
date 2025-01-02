@@ -28,23 +28,24 @@ namespace EletronicSystem.Web.Controllers
         {
             try
             {
-             await _usuarioService.Criar(usuario);
-                if(usuario.OperacaoValida == true)
+
+              var resultado = await _usuarioService.Criar(usuario);
+
+                if(resultado.Succeeded)
                 {
-                    TempData["Msg"] = "Cadastro efetuado!";
+                    TempData["Sucesso"] = "Cadastrado com sucesso";
                 }
                 else
                 {
-                    TempData["Msg"] = "Erro ao finalizar o cadastro";
+                    TempData["Erros"] = resultado.Errors.FirstOrDefault()?.Description; 
                 }
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
 
-            return RedirectToAction("CriarUsuario");
+            return RedirectToAction("CriarUsuario","Usuario");
         }
     }
 }
