@@ -6,7 +6,7 @@ namespace EletronicSystem.Business.Services.Interface
 {
     public interface IUsuarioService
     {
-        Task<ICollection<UsuarioViewModel>> ObterTodos();
+        Task<IList<UsuarioViewModel>> ObterTodos();
         Task<UsuarioViewModel> ObterPorId(Guid id);
         Task<IdentityResult> Criar(UsuarioViewModel usuario);
         Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuario);

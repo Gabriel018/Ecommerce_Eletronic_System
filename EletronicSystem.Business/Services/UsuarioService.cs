@@ -17,9 +17,12 @@ namespace EletronicSystem.Business.Services
             _userManager = usuario;
         }
 
-        public Task<ICollection<UsuarioViewModel>> ObterTodos()
+        public async Task<IList<UsuarioViewModel>> ObterTodos()
         {
-            throw new NotImplementedException();
+            var obter = _userManager.Users.ToList();
+            var retorno = _mapper.Map<IList<UsuarioViewModel>>(obter);
+
+            return retorno;
         }
 
         public Task<UsuarioViewModel> ObterPorId(Guid id)

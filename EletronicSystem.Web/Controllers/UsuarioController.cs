@@ -13,9 +13,11 @@ namespace EletronicSystem.Web.Controllers
           _usuarioService = usuarioService;
         }
 
-        public IActionResult Index()
+        public async Task< IActionResult> Index()
         {
-            return View();
+            var usuarios = await _usuarioService.ObterTodos();
+
+            return View(usuarios);
         }
 
         public async Task<IActionResult> CriarUsuario()

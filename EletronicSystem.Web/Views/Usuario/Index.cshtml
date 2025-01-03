@@ -1,0 +1,25 @@
+﻿@model IList<EletronicSystem.Business.ViewModels.UsuarioViewModel>;
+
+
+<table class="table">
+    <thead>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Nascimento</th>
+        <th>Endereco</th>
+    </thead>
+    <tbody>
+        @if(Model != null)
+        {
+            @foreach(var usuario in Model)
+            {
+                <tr>
+                    <td> @usuario.Nome</td>
+                    <td>@usuario.UserName</td>
+                    <td>@usuario.DataNascimento</td>
+                    <td>@usuario.Endereco</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
