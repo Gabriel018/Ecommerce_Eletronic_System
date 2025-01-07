@@ -20,14 +20,20 @@ namespace EletronicSystem.Business.Services
         public async Task<IList<UsuarioViewModel>> ObterTodos()
         {
             var obter = _userManager.Users.ToList();
-            var retorno = _mapper.Map<IList<UsuarioViewModel>>(obter);
 
-            return retorno;
+            return _mapper.Map<IList<UsuarioViewModel>>(obter); ;
         }
 
-        public Task<UsuarioViewModel> ObterPorId(Guid id)
+        public async Task<UsuarioViewModel> ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            var obter = await _userManager.FindByIdAsync(id.ToString());
+
+            if (obter == null)
+            {
+                Console.WriteLine("Usuario nao encontrado");
+            }
+
+            return _mapper.Map<UsuarioViewModel>(obter); ;
         }
 
         public async Task<IdentityResult> Criar(UsuarioViewModel usuarioViewModel)
@@ -62,9 +68,22 @@ namespace EletronicSystem.Business.Services
         }
 
 
-        public Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuario)
+        public async Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuario)
         {
-            throw new NotImplementedException();
+            var retorno_atualizado = _mapper.Map<Usuario>(usuario);
+
+            var resultado = _userManager.UpdateAsync(retorno_atualizado);
+
+            if (!resultado.IsCompleted)
+            {
+                Console.WriteLine("Atualizado com sucesso");
+            }
+            else
+            {
+                Console.WriteLine("Falha ao atualizar", resultado.Exception);
+            }
+
+            return _userManager.UpdateAsync(retorno_atualizado);
         }
 
         public Task<UsuarioViewModel> Deletar(UsuarioViewModel usuario)

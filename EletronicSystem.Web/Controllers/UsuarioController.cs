@@ -20,34 +20,54 @@ namespace EletronicSystem.Web.Controllers
             return View(usuarios);
         }
 
-        public async Task<IActionResult> CriarUsuario()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> NovoUsuario(UsuarioViewModel usuario )
+        public async Task<IActionResult> Create(UsuarioViewModel usuario )
         {
-            try
+
+            if(ModelState.IsValid)
             {
+                var resultado = await _usuarioService.Criar(usuario);
 
-              var resultado = await _usuarioService.Criar(usuario);
-
-                if(resultado.Succeeded)
+                if (resultado.Succeeded)
                 {
                     TempData["Sucesso"] = "Cadastrado com sucesso";
                 }
                 else
                 {
-                    TempData["Erros"] = resultado.Errors.FirstOrDefault()?.Description; 
+                    TempData["Erros"] = resultado.Errors.FirstOrDefault()?.Description;
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
+
+                return RedirectToAction(nameof(Index));
             }
 
-            return RedirectToAction("CriarUsuario","Usuario");
+            return View(usuario);
+        }
+
+
+        public async Task<IActionResult> Update()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var usuario = await _usuarioService.ObterPorId(id);
+
+            if (usuario == null)
+            {
+                Console.WriteLine("Usuario ausente");
+                return View(nameof(Update));
+            }
+            else
+            {
+                await _usuarioService.Atualizar(usuario);
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }
