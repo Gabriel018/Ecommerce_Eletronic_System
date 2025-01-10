@@ -1,7 +1,6 @@
 ﻿@model EletronicSystem.Business.ViewModels.UsuarioViewModel
 <h1>Criar novo Usuario</h1>
 
-
 <div class="container">
     <div class="col-5">
         <form method="post" enctype="multipart/form-data" asp-validation-summary="ModelOnly">
@@ -32,7 +31,7 @@
                 <span asp-validation-for="Endereco" class="text-danger"></span>
             </div>
            
-            <button type="submit" class="btn-primary mt-2" asp-controller="Usuario" asp-action="NovoUsuario">Enviar</button>
+            <button type="submit" class="btn-primary mt-2" asp-controller="Usuario" asp-action="Update">Enviar</button>
         </form>
     </div>
 

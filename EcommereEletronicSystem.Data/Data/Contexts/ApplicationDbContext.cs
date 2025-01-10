@@ -10,6 +10,7 @@ namespace EletronicSystem.Data.Data.Contexts
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<Cliente> Clientes { get; set; }

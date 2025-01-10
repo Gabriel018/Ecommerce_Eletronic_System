@@ -5,7 +5,9 @@ using System.ComponentModel.DataAnnotations;
 namespace EletronicSystem.Business.ViewModels
 {
         public class UsuarioViewModel: BaseViewModel
-        {
+        {  
+            public Guid Id { get; set; }
+
             [Required(ErrorMessage = "Campo nome obrigatorio")]
             public string Nome { get; set; }
 

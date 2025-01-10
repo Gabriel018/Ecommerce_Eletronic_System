@@ -3,6 +3,7 @@ using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
 using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EletronicSystem.Business.Services
 {
@@ -67,24 +68,39 @@ namespace EletronicSystem.Business.Services
             }
         }
 
-
         public async Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuario)
         {
-            var retorno_atualizado = _mapper.Map<Usuario>(usuario);
-
-            var resultado = _userManager.UpdateAsync(retorno_atualizado);
-
-            if (!resultado.IsCompleted)
+            try
             {
-                Console.WriteLine("Atualizado com sucesso");
+                var usuarioExistente = await _userManager.FindByIdAsync(usuario.Id.ToString());
+
+                if (usuarioExistente == null)
+                {
+                    usuario.MsgErro.Add("", "Usuário não encontrado.");
+                    return usuario;
+                }
+
+                _mapper.Map(usuario, usuarioExistente);
+
+                var resultado = await _userManager.UpdateAsync(usuarioExistente);
+
+                if (!resultado.Succeeded)
+                {
+                    foreach (var error in resultado.Errors)
+                    {
+                        usuario.MsgErro.Add("", error.Description);
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Falha ao atualizar", resultado.Exception);
+                Console.WriteLine($"Erro ao atualizar usuário: {ex.Message}");
+                usuario.MsgErro.Add("", "Erro interno ao atualizar o usuário.");
             }
 
-            return _userManager.UpdateAsync(retorno_atualizado);
+            return usuario;
         }
+
 
         public Task<UsuarioViewModel> Deletar(UsuarioViewModel usuario)
         {

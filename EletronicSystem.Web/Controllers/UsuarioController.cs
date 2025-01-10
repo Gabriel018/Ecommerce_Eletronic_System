@@ -1,5 +1,6 @@
 ﻿using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
+using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EletronicSystem.Web.Controllers
@@ -49,23 +50,23 @@ namespace EletronicSystem.Web.Controllers
         }
 
 
-        public async Task<IActionResult> Update()
-        {
-            return View();
-        }
-
         public async Task<IActionResult> Update(Guid id)
         {
             var usuario = await _usuarioService.ObterPorId(id);
 
-            if (usuario == null)
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update([FromForm] UsuarioViewModel usuario )
+        {
             {
-                Console.WriteLine("Usuario ausente");
-                return View(nameof(Update));
-            }
-            else
-            {
-                await _usuarioService.Atualizar(usuario);
+              var response = await _usuarioService.Atualizar(usuario);
+
+                if (response.MsgErro.Values != null)
+                {
+                    TempData["Error"] = response.MsgErro.FirstOrDefault().Value;
+                }
             }
             return RedirectToAction(nameof(Index));
         }
