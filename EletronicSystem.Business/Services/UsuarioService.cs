@@ -3,6 +3,7 @@ using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
 using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EletronicSystem.Business.Services
@@ -40,8 +41,8 @@ namespace EletronicSystem.Business.Services
         public async Task<IdentityResult> Criar(UsuarioViewModel usuarioViewModel)
         {
             var usuario = _mapper.Map<Usuario>(usuarioViewModel);
-            usuario.Email = usuario.UserName; 
-            usuario.EmailConfirmed = true; 
+            usuario.Email = usuario.UserName;
+            usuario.EmailConfirmed = true;
 
             try
             {
@@ -57,7 +58,7 @@ namespace EletronicSystem.Business.Services
                     usuarioViewModel.OperacaoValida = false;
                     Console.WriteLine(resultado.Errors);
 
-                    return resultado; 
+                    return resultado;
                 }
             }
             catch (Exception ex)
@@ -101,10 +102,28 @@ namespace EletronicSystem.Business.Services
             return usuario;
         }
 
-
-        public Task<UsuarioViewModel> Deletar(UsuarioViewModel usuario)
+        public async Task<UsuarioViewModel> Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            var response = new UsuarioViewModel();
+
+            var usuarioExistente = await _userManager.FindByIdAsync(id.ToString());
+
+            if (usuarioExistente == null)
+            {
+                response.MsgErro.Add("", "Usuário não encontrado.");
+                return response;
+            }
+            else
+            {
+                var retorno = await _userManager.DeleteAsync(usuarioExistente);
+
+                if (!retorno.Succeeded)
+                {
+                    response.MsgErro.Add("", retorno.Errors.FirstOrDefault()?.Description ?? "");
+                }
+
+                return response;
+            }
         }
     }
 }

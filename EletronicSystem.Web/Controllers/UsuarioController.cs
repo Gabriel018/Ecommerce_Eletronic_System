@@ -11,10 +11,10 @@ namespace EletronicSystem.Web.Controllers
 
         public UsuarioController(IUsuarioService usuarioService)
         {
-          _usuarioService = usuarioService;
+            _usuarioService = usuarioService;
         }
 
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var usuarios = await _usuarioService.ObterTodos();
 
@@ -27,10 +27,10 @@ namespace EletronicSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(UsuarioViewModel usuario )
+        public async Task<IActionResult> Create(UsuarioViewModel usuario)
         {
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var resultado = await _usuarioService.Criar(usuario);
 
@@ -58,15 +58,26 @@ namespace EletronicSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update([FromForm] UsuarioViewModel usuario )
+        public async Task<IActionResult> Update([FromForm] UsuarioViewModel usuario)
         {
-            {
-              var response = await _usuarioService.Atualizar(usuario);
+            var response = await _usuarioService.Atualizar(usuario);
 
-                if (response.MsgErro.Values != null)
-                {
-                    TempData["Error"] = response.MsgErro.FirstOrDefault().Value;
-                }
+            if (response.MsgErro.Values != null)
+            {
+                TempData["Error"] = response.MsgErro.FirstOrDefault().Value;
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+      
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var response = await _usuarioService.Deletar(id);
+
+            if (response.MsgErro.Values != null)
+            {
+                TempData["Error"] = response.MsgErro.FirstOrDefault().Value;
             }
             return RedirectToAction(nameof(Index));
         }

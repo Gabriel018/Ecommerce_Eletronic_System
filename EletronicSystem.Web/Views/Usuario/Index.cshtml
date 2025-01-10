@@ -2,6 +2,7 @@
 
 
 <table class="table">
+    <thead>
         <th>Nome</th>
         <th>Email</th>
         <th>Nascimento</th>
@@ -18,7 +19,8 @@
                     <td>@usuario.UserName</td>
                     <td>@usuario.DataNascimento</td>
                     <td>@usuario.Endereco</td>
-                    <td> <a asp-action="Update" asp-route-id="@usuario.Id">Edit</a></td>
+                    <td><a asp-action="Update" asp-route-id="@usuario.Id">Editar</a></td>
+                    <td><a asp-controller="Usuario" asp-action="Delete" asp-route-id="@usuario.Id">Excluir</a></td>
                 </tr>  
             }
         }

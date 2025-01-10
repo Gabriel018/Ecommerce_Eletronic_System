@@ -10,6 +10,6 @@ namespace EletronicSystem.Business.Services.Interface
         Task<UsuarioViewModel> ObterPorId(Guid id);
         Task<IdentityResult> Criar(UsuarioViewModel usuario);
         Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuario);
-        Task<UsuarioViewModel> Deletar(UsuarioViewModel usuario);   
+        Task<UsuarioViewModel> Deletar(Guid id);   
     }
 }
