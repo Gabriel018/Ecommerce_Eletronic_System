@@ -1,49 +1,36 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div id="carouselExampleIndicators" class="carousel slide container-caroussel" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="/Img/Dell Office.jpg" class="d-block w-100" alt="...">
+<div class="mb-3" style="max-width: 840px;">
+    <div class="row g-0">
+        <div class="col-md-4 order-2">
+            <img src="/Img/MacBook Notebook.jpg" class="img-fluid rounded-start" alt="...">
         </div>
-        <div class="carousel-item">
-            <img src="/Img/Logitech G305.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="/Img/Teclado Gamer Mecanico.jpg" class="d-block w-100" alt="...">
+        <div class="col-md-8 order-1">
+            <div class="card-body">
+                <h3 class="card-title">Menor preço do mercado</h3>
+                <p class="card-text">Todos os produtos com garantia de 2 anos,entregamos em ate 24h apos o pagamento.</p>
+            </div>
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
-
-<div class="card-group g-3">
+<div class="container mt-5">
+    <h3 class="text-center">Tecnologia com baixo preço</h3>
+    <div class="card-group g-3">
     <div class="card">
         <img src="/Img/Headphones.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">Headphones</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+             <p class="card-text">Com os avanços nas tecnologias Bluetooth, os headphones sem fio modernos oferecem uma qualidade de som excepcional, comparável aos modelos com fio..</p>
+             <p class="card-text"><small class="text-muted">R$ 39,90</small></p>
         </div>
     </div>
     <div class="card">
         <img src="/Img/MacBook Notebook.jpg" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">MacBook</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text">MacBook é uma linha de computadores portáteis clássicos,voltados para o uso diário e atividades leves. Produzido até 2015</p>
+            <p class="card-text"><small class="text-muted">R$ 889,90</small></p>
         </div>
     </div>
     <div class="card">
@@ -51,11 +38,8 @@
         <div class="card-body">
             <h5 class="card-title">PC Gamer</h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-muted">R$ 1389,90</small></p>
         </div>
     </div>
 </div>
-
-@* 
-<partial name="~/Views/Produto/Index.cshtml"/>
- *@
+</div>
