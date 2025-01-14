@@ -4,13 +4,16 @@
     ViewData["Tittle"] = "Lista de produtos";
 }
 
-<h1>Lista de Produtos</h1>
+<div class="navbar">
+    <h1>Lista de Produtos</h1>
+    <a class="btn btn-primary btn-lg" asp-controller="Produto" asp-action="Create">+ Produtos</a>
+</div>
 
 <table class="table">
     <tread>
-        <th>Id</th>
         <th>Descriçao</th>
         <th>Valor</th>
+        <th>Categoria</th>
     </tread>
     <tbody>
         @if(Model != null)
@@ -18,13 +21,12 @@
             @foreach (var produto in Model)
             {
                 <tr>
-                    <td>@produto.Id</td>
                     <td>@produto.Descricao</td>
                     <td>@produto.Valor</td>
+                    <td>@produto.Categoria</td>
                 </tr>
             }
         }
-     
     </tbody>
 
 </table>

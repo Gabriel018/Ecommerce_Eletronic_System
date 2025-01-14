@@ -11,9 +11,9 @@ namespace EletronicSystem.Web.Controllers
         {
             _produtoService = produtoService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var produto = _produtoService.ObterTodos();
+            var produto = await _produtoService.ObterTodos();
 
             if (produto == null)
             {
@@ -21,6 +21,12 @@ namespace EletronicSystem.Web.Controllers
             }
 
             return View(produto);
+        }
+
+        public IActionResult Create() { 
+
+
+            return View();
         }
     }
 }
