@@ -4,6 +4,7 @@ using EletronicSystem.Data.Data.Contexts;
 using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,8 @@ else
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-builder.Services.AddDefaultIdentity<Usuario>(options =>
+
+builder.Services.AddIdentity<Usuario,IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = true;
 })

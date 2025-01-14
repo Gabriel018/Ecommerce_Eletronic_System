@@ -1,6 +1,5 @@
 ﻿using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
-using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EletronicSystem.Web.Controllers
@@ -48,7 +47,6 @@ namespace EletronicSystem.Web.Controllers
 
             return View(usuario);
         }
-
 
         public async Task<IActionResult> Update(Guid id)
         {
