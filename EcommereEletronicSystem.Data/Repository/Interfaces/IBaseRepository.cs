@@ -6,7 +6,7 @@ namespace EletronicSystem.Domain.Repository.Interfaces
     {
         Task<IEnumerable<TEntity>>ObterTodos();
         Task<TEntity> ObterPorId(int id);
-        Task Adicionar(TEntity entity);
+        Task<bool> Adicionar(TEntity entity);
         Task Atualizar (TEntity entity);
         Task Deletar(Guid id);
     }

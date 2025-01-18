@@ -1,9 +1,36 @@
-﻿
+﻿@model EletronicSystem.Business.ViewModels.ProdutoViewModel
 
-<h1>Novo produto</h1>
+<h1 class="text-center">Novo produto</h1>
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+<div class="container d-flex justify-content-center">
+    <div class="col-5">
+        <form method="post" asp-validation-summary="ModelOnly">
+            <div>
+                <label class="form-label mb-1">Descriçao</label>
+                <input asp-for="Descricao" class="form-control">
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div>
+                <label class="form-label mb-1">Valor</label>
+                <input asp-for="Valor" class="form-control">
+                <span asp-validation-for="Valor" class="text-danger"></span>
+            </div>
+            <div>
+                <label class="form-label mb-1">Categoria</label>
+                <input asp-for="Categoria" class="form-control">
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn-primary btn-lg mt-2"  asp-controller="Produto" asp-action="Create" >Enviar</button>
+        </form>
+    </div>
+</div>
+
+@if (TempData["Sucesso"] != null)
+{
+    <div class="alert alert-success">@TempData["Sucesso"]</div>
+}
+
+@if (TempData["Erros"] != null)
+{
+    <div class="alert alert-danger">@TempData["Erros"]</div>
 }

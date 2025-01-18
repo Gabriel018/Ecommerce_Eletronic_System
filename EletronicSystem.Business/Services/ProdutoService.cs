@@ -5,6 +5,7 @@ using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
 using EletronicSystem.Data.Data.Contexts;
 using EletronicSystem.Data.Repository.Interfaces;
+using EletronicSystem.Domain.Entities;
 
 namespace EletronicSystem.Business.Services
 {
@@ -14,7 +15,7 @@ namespace EletronicSystem.Business.Services
         private readonly IMapper _mapper;
         private readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoService(ApplicationDbContext context,IMapper mapper,IProdutoRepository produtoRepository)
+        public ProdutoService(ApplicationDbContext context, IMapper mapper, IProdutoRepository produtoRepository)
         {
             _context = context;
             _mapper = mapper;
@@ -24,7 +25,7 @@ namespace EletronicSystem.Business.Services
         public async Task<IEnumerable<ProdutoViewModel>> ObterTodos()
         {
             var obter = await _produtoRepository.ObterTodos();
-            var retorno = _mapper.Map<IEnumerable<ProdutoViewModel>>(obter); 
+            var retorno = _mapper.Map<IEnumerable<ProdutoViewModel>>(obter);
 
             return retorno;
         }
@@ -34,9 +35,18 @@ namespace EletronicSystem.Business.Services
             throw new NotImplementedException();
         }
 
-        public Task<ProdutoViewModel> Adicionar(ProdutoViewModel obj)
+        public async Task<ProdutoViewModel> Adicionar(ProdutoViewModel obj)
         {
-            throw new NotImplementedException();
+            var produto =  _mapper.Map<Produto>(obj);
+            bool response = await _produtoRepository.Adicionar(produto);
+
+            if (response)
+                obj.OperacaoValida = true;
+            else 
+                obj.OperacaoValida = false;
+                
+
+            return obj;
         }
 
         public Task<ProdutoViewModel> Atualizar(ProdutoViewModel obj)

@@ -1,4 +1,5 @@
 ﻿using EletronicSystem.Business.Services.Interface;
+using EletronicSystem.Business.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EletronicSystem.Web.Controllers
@@ -25,8 +26,27 @@ namespace EletronicSystem.Web.Controllers
 
         public IActionResult Create() { 
 
-
             return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(ProdutoViewModel produto)
+        {
+          if(ModelState.IsValid)
+            {
+                var resultado = await _produtoService.Adicionar(produto);
+
+                if(resultado.OperacaoValida)
+                {
+                    TempData["Sucesso"] = "Produto Cadastrado com sucesso";
+                }
+                else
+                {
+                    TempData["Erros"] = resultado.MsgErro.FirstOrDefault().Value;
+                }
+            }
+          return View(produto);
         }
     }
 }

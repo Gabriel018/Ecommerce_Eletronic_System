@@ -9,16 +9,16 @@ namespace EletronicSystem.Business.ViewModels
             public Guid Id { get; set; }
 
             [Required(ErrorMessage = "Campo nome obrigatorio")]
-            public string Nome { get; set; }
+            public string? Nome { get; set; }
 
             [Required(ErrorMessage = "Campo email obrigatorio")]
             public string? UserName { get; set; }
            
             [Required(ErrorMessage ="Campo cpf obrigatorio")]
-            public string CPF { get; set; }
+            public string? CPF { get; set; }
             [Required(ErrorMessage ="Campo Data de nascimento obrigatorio")]
             public DateTime DataNascimento { get; set; }
             [Required(ErrorMessage ="Campo Endereço")]
-            public string Endereco { get; set; }
+            public string? Endereco { get; set; }
         }
 }

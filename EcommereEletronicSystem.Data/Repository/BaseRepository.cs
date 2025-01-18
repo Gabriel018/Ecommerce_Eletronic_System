@@ -36,18 +36,19 @@ namespace EletronicSystem.Domain.Repository
             return await _DbSet.FindAsync();
         }
 
-        public async Task Adicionar(TEntity entity)
+        public async Task<bool> Adicionar(TEntity entity)
         {
             try
             {
-                _DbSet.AddAsync(entity);
+                await _DbSet.AddAsync(entity);
                 await SalvaAlteracoes();
+                return true;
             }
             catch (Exception ex)
             {
               Console.WriteLine(ex.ToString());
+                return false;
             }
-    
         }
 
         public async Task Atualizar(TEntity entity)
