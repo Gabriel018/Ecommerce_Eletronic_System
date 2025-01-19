@@ -38,15 +38,32 @@ namespace EletronicSystem.Web.Controllers
                 var resultado = await _produtoService.Adicionar(produto);
 
                 if(resultado.OperacaoValida)
-                {
                     TempData["Sucesso"] = "Produto Cadastrado com sucesso";
-                }
                 else
-                {
                     TempData["Erros"] = resultado.MsgErro.FirstOrDefault().Value;
-                }
+
             }
           return View(produto);
+        }
+
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var retorno = await _produtoService.ObterPorId(id);
+
+            return View(retorno);
+        }
+
+        [HttpPost]
+        public  async Task<IActionResult> Update(ProdutoViewModel produto)
+        {
+            var response = await _produtoService.Atualizar(produto);
+
+            if(response.OperacaoValida == true) 
+                TempData["Sucesso"] = "Produto atualizado com sucesso";
+            else
+                TempData["Erros"] = response.MsgErro.FirstOrDefault().Value;
+
+            return View(produto);   
         }
     }
 }

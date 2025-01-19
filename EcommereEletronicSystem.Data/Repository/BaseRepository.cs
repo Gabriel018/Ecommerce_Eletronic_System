@@ -31,9 +31,17 @@ namespace EletronicSystem.Domain.Repository
 
         }
 
-        public async Task<TEntity> ObterPorId(int id)
+        public async Task<TEntity?> ObterPorId(Guid id)
         {
-            return await _DbSet.FindAsync();
+            try
+            {
+                return await _DbSet.FindAsync(id);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<bool> Adicionar(TEntity entity)
@@ -51,17 +59,21 @@ namespace EletronicSystem.Domain.Repository
             }
         }
 
-        public async Task Atualizar(TEntity entity)
+        public async Task<bool> Atualizar(TEntity entity)
         {
             try
             {
-                _DbSet.Update(entity);
-                await SalvaAlteracoes();
+                 _DbSet.Update(entity);
+                 await SalvaAlteracoes();
+
+                 return true;
             }
 
             catch (Exception ex)
             {
               Console.WriteLine($"{ex.ToString()}");
+
+                return false;
             }
         }
 

@@ -6,6 +6,7 @@ using EletronicSystem.Business.ViewModels;
 using EletronicSystem.Data.Data.Contexts;
 using EletronicSystem.Data.Repository.Interfaces;
 using EletronicSystem.Domain.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EletronicSystem.Business.Services
 {
@@ -30,28 +31,55 @@ namespace EletronicSystem.Business.Services
             return retorno;
         }
 
-        public Task<ProdutoViewModel> ObterPorId(Guid id)
+        public async Task<ProdutoViewModel> ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            var response = new ProdutoViewModel();
+
+            var produto = await _produtoRepository.ObterPorId(id);
+
+            if (produto == null)
+            {
+                response.MsgErro.Add("", "Erro ao encontrar usario");
+            }
+
+            response = _mapper.Map<ProdutoViewModel>(produto);
+            response.OperacaoValida = true;
+
+            return response;
         }
 
         public async Task<ProdutoViewModel> Adicionar(ProdutoViewModel obj)
         {
-            var produto =  _mapper.Map<Produto>(obj);
+            var produto = _mapper.Map<Produto>(obj);
             bool response = await _produtoRepository.Adicionar(produto);
 
             if (response)
                 obj.OperacaoValida = true;
-            else 
+            else
                 obj.OperacaoValida = false;
-                
+
 
             return obj;
         }
 
-        public Task<ProdutoViewModel> Atualizar(ProdutoViewModel obj)
+        public async Task<ProdutoViewModel> Atualizar(ProdutoViewModel obj)
         {
-            throw new NotImplementedException();
+            var produto = await _produtoRepository.ObterPorId(obj.Id);
+            _mapper.Map(obj, produto);
+
+            try
+            {
+                await _produtoRepository.Atualizar(produto);
+
+                obj.OperacaoValida = true;
+            }
+
+            catch (Exception ex)
+            {
+                obj.MsgErro.Add("", "Falha ao atualizar usuario");
+
+            }
+            return  obj;
         }
 
         public Task<ProdutoViewModel> Deletar(Guid id)
