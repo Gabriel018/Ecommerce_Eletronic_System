@@ -1,5 +1,6 @@
 ﻿using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
+using EletronicSystem.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EletronicSystem.Web.Controllers
@@ -24,7 +25,9 @@ namespace EletronicSystem.Web.Controllers
             return View(produto);
         }
 
-        public IActionResult Create() { 
+        public IActionResult Create()
+        {
+            ViewData["Categoria"] = Enum.GetValues(typeof(EnumCategoria));
 
             return View();
         }
@@ -43,7 +46,7 @@ namespace EletronicSystem.Web.Controllers
                     TempData["Erros"] = resultado.MsgErro.FirstOrDefault().Value;
 
             }
-          return View(produto);
+          return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Update(Guid id)
@@ -64,6 +67,18 @@ namespace EletronicSystem.Web.Controllers
                 TempData["Erros"] = response.MsgErro.FirstOrDefault().Value;
 
             return View(produto);   
+        }
+
+        public async Task<IActionResult> Delete (Guid id)
+        {
+            var response = await _produtoService.Deletar(id);
+
+            if (response.OperacaoValida == true)
+                TempData["Sucesso"] = "Produto excluido com sucesso";
+            else
+                TempData["Erros"] = response.MsgErro.FirstOrDefault().Value;
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -79,12 +79,21 @@ namespace EletronicSystem.Business.Services
                 obj.MsgErro.Add("", "Falha ao atualizar usuario");
 
             }
-            return  obj;
+            return obj;
         }
 
-        public Task<ProdutoViewModel> Deletar(Guid id)
+        public async Task<ProdutoViewModel> Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            ProdutoViewModel produto = new ProdutoViewModel();
+
+            var response = await _produtoRepository.Deletar(id);
+
+            if (response)
+                produto.OperacaoValida = true;
+            else
+                produto.MsgErro.Add("", "Falhar ao excluir");
+
+            return produto;
         }
     }
 }

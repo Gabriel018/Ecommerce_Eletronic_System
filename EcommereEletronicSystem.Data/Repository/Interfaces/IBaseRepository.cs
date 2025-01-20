@@ -8,6 +8,6 @@ namespace EletronicSystem.Domain.Repository.Interfaces
         Task<TEntity> ObterPorId(Guid id);
         Task<bool> Adicionar(TEntity entity);
         Task<bool> Atualizar (TEntity entity);
-        Task Deletar(Guid id);
+        Task<bool>  Deletar(Guid id);
     }
 }

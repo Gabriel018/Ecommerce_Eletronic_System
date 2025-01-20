@@ -74,9 +74,10 @@ namespace EletronicSystem.Web.Controllers
             var response = await _usuarioService.Deletar(id);
 
             if (response.MsgErro.Values != null)
-            {
                 TempData["Error"] = response.MsgErro.FirstOrDefault().Value;
-            }
+            else
+                TempData["Sucesso"] = "Excluido com sucesso";
+
             return RedirectToAction(nameof(Index));
         }
     }

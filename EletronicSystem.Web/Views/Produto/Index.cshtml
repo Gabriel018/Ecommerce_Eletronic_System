@@ -32,5 +32,16 @@
             }
         }
     </tbody>
-
 </table>
+
+
+
+@if (TempData["Sucesso"] != null)
+{
+    <div class="alert alert-success">@TempData["Sucesso"]</div>
+}
+
+@if (TempData["Erros"] != null)
+{
+    <div class="alert alert-danger">@TempData["Erros"]</div>
+}

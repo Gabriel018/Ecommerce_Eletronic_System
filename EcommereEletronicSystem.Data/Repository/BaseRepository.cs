@@ -77,10 +77,20 @@ namespace EletronicSystem.Domain.Repository
             }
         }
 
-        public async Task Deletar(Guid id)
+        public async Task<bool> Deletar(Guid id)
         {
-            _DbSet.Remove(new TEntity { Id = id });
-            await SalvaAlteracoes();
+            try
+            {
+                _DbSet.Remove(new TEntity { Id = id });
+                await SalvaAlteracoes();
+
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public async Task SalvaAlteracoes()
