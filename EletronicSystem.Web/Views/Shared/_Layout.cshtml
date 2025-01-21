@@ -12,7 +12,6 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">EletronicSystem</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,11 +28,13 @@
                                         Catagorias
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Computadores e Notebooks</a></li>
-                                        <li><a class="dropdown-item" href="#">Periféricos</a></li>
-                                        <li><a class="dropdown-item" href="#">Smartphones e Tablets</a></li>
-                                        <li><a class="dropdown-item" href="#">Acessórios</a></li>
-                                        <li><a class="dropdown-item" href="#">Hardware e Componentes</a></li>
+                                    <li><a class="dropdown-item" href="/Produto/FiltrarPorCategoria?categoria=Computadores">Computadores</a></li>
+                                    <li><a class="dropdown-item" href="/Produto/FiltrarPorCategoria?categoria=NoteBook">NoteBook</a></li>
+                                    <li><a class="dropdown-item" href="/Produto/FiltrarPorCategoria?categoria=Periferico">Periféricos</a></li>
+                                    <li><a class="dropdown-item" href="/Produto/FiltrarPorCategoria?categoria=Monitor">Monitores</a></li>
+                                    <li><a class="dropdown-item" href="/Produto/FiltrarPorCategoria?categoria=Acessórios">Acessórios</a></li>
+                                    <li><a class="dropdown-item" href="/Produto/FiltrarPorCategoria?categoria=Hardware e Componentes">Hardware e Componentes</a></li>
+                                </ul>
                                     </ul>
                                 </li>
                             </ul>

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<EletronicSystem.Business.ViewModels.ProdutoViewModel>
+
+
+<h2>Filtrar Produtos por Categoria</h2>
+
+<div class="d-flex flex-wrap gap-3 justify-content-start">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var produto in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="@produto.Descricao">
+                <div class="card-body">
+                    <h5 class="card-title">@produto.Descricao</h5>
+                    <p class="card-text">Preço: R$ @produto.Valor</p>
+                    <p class="card-text">Categoria: @produto.Categoria</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Nenhum produto encontrado para a categoria selecionada.</p>
+    }
+</div>

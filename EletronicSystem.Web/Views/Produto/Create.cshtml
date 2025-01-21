@@ -24,7 +24,7 @@
                 <select asp-for="Categoria" class="form-control" id="Categoria">
                     @foreach (var categoria in categorias)
                     {
-                        <option value="@((int)categoria)">@categoria</option>
+                        <option value="@categoria.ToString()">@categoria</option>
                     }
                 </select>
                 <span asp-validation-for="Categoria" class="text-danger"></span>

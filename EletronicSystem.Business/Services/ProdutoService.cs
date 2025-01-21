@@ -1,12 +1,10 @@
 ﻿
-
 using AutoMapper;
 using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
 using EletronicSystem.Data.Data.Contexts;
 using EletronicSystem.Data.Repository.Interfaces;
 using EletronicSystem.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace EletronicSystem.Business.Services
 {
@@ -44,6 +42,21 @@ namespace EletronicSystem.Business.Services
 
             response = _mapper.Map<ProdutoViewModel>(produto);
             response.OperacaoValida = true;
+
+            return response;
+        }
+
+        public async Task<List<ProdutoViewModel>> FiltrarPorCategoria(string categoria)
+        {
+            var response = new List<ProdutoViewModel>();
+
+            var produtos = await _produtoRepository.FiltrarPorcategoria(categoria);
+
+            if (produtos == null)
+                response.FirstOrDefault()?.MsgErro.Add("", "Nenhum usuario econtrado");
+            else
+
+            response = _mapper.Map<List<ProdutoViewModel>>(produtos);
 
             return response;
         }

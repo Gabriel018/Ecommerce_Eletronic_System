@@ -80,5 +80,13 @@ namespace EletronicSystem.Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> FiltrarPorCategoria(string categoria)
+        {
+            var produto = await _produtoService.FiltrarPorCategoria(categoria);
+
+            return View(produto);
+        }
     }
 }

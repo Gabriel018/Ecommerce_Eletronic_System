@@ -8,31 +8,31 @@
     @if (User.IsInRole("Admin"))
     {
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
+            <a class="nav-link text-light" asp-area="" asp-controller="Usuario" asp-action="Index">usuarios</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a>
+            <a class="nav-link text-light" asp-area="" asp-controller="Produto" asp-action="Index">produtos</a>
         </li>
     }
 
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Seja bem vindo  @User.Identity?.Name!</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity?.Name!</a>
         </li>
         <li class="nav-item text-light">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
+                <button type="submit" class="nav-link btn btn-link text-light">logout</button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-light" asp-controller="Usuario" asp-action="Create">Registrar-se</a>
+            <a class="nav-link text-light" asp-controller="Usuario" asp-action="Create">registrar-se</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">login</a>
         </li>
     }
 </ul>
