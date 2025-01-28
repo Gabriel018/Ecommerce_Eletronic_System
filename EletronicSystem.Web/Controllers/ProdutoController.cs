@@ -34,10 +34,19 @@ namespace EletronicSystem.Web.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(ProdutoViewModel produto)
+        public async Task<IActionResult> Create(IFormFile Image,  ProdutoViewModel produto )
         {
           if(ModelState.IsValid)
             {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Img");
+                var uniqueFileName = Guid.NewGuid().ToString() + ".JPG" ;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Salvar o arquivo no diretório
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Image.CopyToAsync(fileStream);
+                }
                 var resultado = await _produtoService.Adicionar(produto);
 
                 if(resultado.OperacaoValida)

@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace EletronicSystem.Business.ViewModels
 {
     public class ProdutoViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
+        public IFormFile? Foto { get; set; }
 
         [Required(ErrorMessage ="Campo descrição é obrigatorio")]
         public string? Descricao { get; set; }
