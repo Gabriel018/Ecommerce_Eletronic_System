@@ -3,27 +3,20 @@ using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
 using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EletronicSystem.Business.Services
 {
-    public class UsuarioService : IUsuarioService
+    public class UsuarioService(IMapper mapper, UserManager<Usuario> usuario) : IUsuarioService
     {
-        private readonly IMapper _mapper;
-        private readonly UserManager<Usuario> _userManager;
-
-        public UsuarioService(IMapper mapper, UserManager<Usuario> usuario)
-        {
-            _mapper = mapper;
-            _userManager = usuario;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly UserManager<Usuario> _userManager = usuario;
 
         public async Task<IList<UsuarioViewModel>> ObterTodos()
         {
-            var obter = _userManager.Users.ToList();
+            var obter = await _userManager.Users.ToListAsync();
 
-            return _mapper.Map<IList<UsuarioViewModel>>(obter); ;
+            return _mapper.Map<IList<UsuarioViewModel>>(obter);
         }
 
         public async Task<UsuarioViewModel> ObterPorId(Guid id)
@@ -35,71 +28,55 @@ namespace EletronicSystem.Business.Services
                 Console.WriteLine("Usuario nao encontrado");
             }
 
-            return _mapper.Map<UsuarioViewModel>(obter); ;
+            return _mapper.Map<UsuarioViewModel>(obter);
         }
 
-        public async Task<IdentityResult> Criar(UsuarioViewModel usuarioViewModel)
+        public async Task<IdentityResult> Criar(UsuarioViewModel usuario)
         {
-            var usuario = _mapper.Map<Usuario>(usuarioViewModel);
             usuario.Email = usuario.UserName;
             usuario.EmailConfirmed = true;
 
-            try
+            var usuarioEntity = _mapper.Map<Usuario>(usuario);
+
+
+            var resultado = await _userManager.CreateAsync(usuarioEntity, "Admin@123");
+
+            if (resultado.Succeeded)
             {
-                var resultado = await _userManager.CreateAsync(usuario, "Admin@123");
-
-                if (resultado.Succeeded)
-                {
-                    usuarioViewModel.OperacaoValida = true;
-                    return IdentityResult.Success;
-                }
-                else
-                {
-                    usuarioViewModel.OperacaoValida = false;
-                    Console.WriteLine(resultado.Errors);
-
-                    return resultado;
-                }
+                usuario.OperacaoValida = true;
+                return IdentityResult.Success;
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Erro ao criar usuário: {ex.Message}");
+                usuario.OperacaoValida = false;
+                Console.WriteLine(resultado.Errors);
 
-                return IdentityResult.Failed(new IdentityError { Description = "Ocorreu um erro inesperado ao criar o usuário." });
+                return resultado;
             }
         }
 
-        public async Task<UsuarioViewModel> Atualizar(UsuarioViewModel usuario)
+        public async Task<IdentityResult> Atualizar(UsuarioViewModel usuario)
         {
-            try
+            var usuarioExistente = await _userManager.FindByIdAsync(usuario.Id.ToString());
+
+            if (usuarioExistente == null)
             {
-                var usuarioExistente = await _userManager.FindByIdAsync(usuario.Id.ToString());
-
-                if (usuarioExistente == null)
-                {
-                    usuario.MsgErro.Add("", "Usuário não encontrado.");
-                    return usuario;
-                }
-
-                _mapper.Map(usuario, usuarioExistente);
-
-                var resultado = await _userManager.UpdateAsync(usuarioExistente);
-
-                if (!resultado.Succeeded)
-                {
-                    foreach (var error in resultado.Errors)
-                    {
-                        usuario.MsgErro.Add("", error.Description);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao atualizar usuário: {ex.Message}");
-                usuario.MsgErro.Add("", "Erro interno ao atualizar o usuário.");
+                usuario.MsgErro.Add("", "Usuário não encontrado.");
+                return IdentityResult.Success;
             }
 
-            return usuario;
+            _mapper.Map(usuario, usuarioExistente);
+
+            var resultado = await _userManager.UpdateAsync(usuarioExistente);
+
+            if (!resultado.Succeeded)
+            {
+                foreach (var error in resultado.Errors)
+                {
+                    usuario.MsgErro.Add("", error.Description);
+                }
+            }
+            return resultado;
         }
 
         public async Task<UsuarioViewModel> Deletar(Guid id)

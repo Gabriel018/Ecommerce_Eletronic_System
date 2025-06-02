@@ -1,5 +1,4 @@
 ﻿
-
 using System.ComponentModel.DataAnnotations;
 
 namespace EletronicSystem.Business.ViewModels
@@ -16,9 +15,16 @@ namespace EletronicSystem.Business.ViewModels
            
             [Required(ErrorMessage ="Campo cpf obrigatorio")]
             public string? CPF { get; set; }
+
             [Required(ErrorMessage ="Campo Data de nascimento obrigatorio")]
             public DateTime DataNascimento { get; set; }
+
             [Required(ErrorMessage ="Campo Endereço")]
             public string? Endereco { get; set; }
-        }
+
+            public string? Email { get; set; }
+
+            public bool EmailConfirmed { get; set; }
+
+    }
 }
