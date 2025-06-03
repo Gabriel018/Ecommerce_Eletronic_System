@@ -1,25 +1,15 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using EletronicSystem.Business.Services.Interface;
 using EletronicSystem.Business.ViewModels;
-using EletronicSystem.Data.Data.Contexts;
 using EletronicSystem.Data.Repository.Interfaces;
 using EletronicSystem.Domain.Entities;
 
 namespace EletronicSystem.Business.Services
 {
-    public class ProdutoService : IProdutoService
+    public class ProdutoService(IMapper mapper, IProdutoRepository produtoRepository) : IProdutoService
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IMapper _mapper;
-        private readonly IProdutoRepository _produtoRepository;
-
-        public ProdutoService(ApplicationDbContext context, IMapper mapper, IProdutoRepository produtoRepository)
-        {
-            _context = context;
-            _mapper = mapper;
-            _produtoRepository = produtoRepository;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IProdutoRepository _produtoRepository = produtoRepository;
 
         public async Task<IEnumerable<ProdutoViewModel>> ObterTodos()
         {
@@ -53,8 +43,7 @@ namespace EletronicSystem.Business.Services
             var produtos = await _produtoRepository.FiltrarPorcategoria(categoria);
 
             if (produtos == null)
-                response.FirstOrDefault()?.MsgErro.Add("", "Nenhum usuario econtrado");
-            else
+                response.FirstOrDefault()?.MsgErro.Add("", "Nenhum produto econtrado");
 
             response = _mapper.Map<List<ProdutoViewModel>>(produtos);
 
@@ -64,13 +53,13 @@ namespace EletronicSystem.Business.Services
         public async Task<ProdutoViewModel> Adicionar(ProdutoViewModel obj)
         {
             var produto = _mapper.Map<Produto>(obj);
+            
             bool response = await _produtoRepository.Adicionar(produto);
 
             if (response)
                 obj.OperacaoValida = true;
             else
                 obj.OperacaoValida = false;
-
 
             return obj;
         }

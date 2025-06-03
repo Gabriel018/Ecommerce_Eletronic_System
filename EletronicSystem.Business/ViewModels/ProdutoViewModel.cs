@@ -6,7 +6,10 @@ namespace EletronicSystem.Business.ViewModels
     public class ProdutoViewModel : BaseViewModel
     {
         public Guid Id { get; set; }
-        public IFormFile? Foto { get; set; }
+
+        public IFormFile? Arquivo { get; set; }
+
+        public byte[]? Foto { get; set; }
 
         [Required(ErrorMessage ="Campo descrição é obrigatorio")]
         public string? Descricao { get; set; }
