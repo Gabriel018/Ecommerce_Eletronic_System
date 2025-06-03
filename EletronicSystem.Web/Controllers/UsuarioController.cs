@@ -4,14 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EletronicSystem.Web.Controllers
 {
-    public class UsuarioController : Controller
+    public class UsuarioController(IUsuarioService usuarioService) : Controller
     {
-        private readonly IUsuarioService _usuarioService;
-
-        public UsuarioController(IUsuarioService usuarioService)
-        {
-            _usuarioService = usuarioService;
-        }
+        private readonly IUsuarioService _usuarioService = usuarioService;
 
         public async Task<IActionResult> Index()
         {
@@ -20,7 +15,7 @@ namespace EletronicSystem.Web.Controllers
             return View(usuarios);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -28,7 +23,6 @@ namespace EletronicSystem.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UsuarioViewModel usuario)
         {
-
             if (ModelState.IsValid)
             {
                 var resultado = await _usuarioService.Criar(usuario);
@@ -48,34 +42,40 @@ namespace EletronicSystem.Web.Controllers
             return View(usuario);
         }
 
-        public async Task<IActionResult> Update(Guid id)
+        #pragma warning disable S6967
+        public async Task<ActionResult> Update(Guid id)
         {
             var usuario = await _usuarioService.ObterPorId(id);
 
-            return View(usuario);
+            if (usuario != null) // NOSONAR
+
+            {
+                return Ok(usuario);
+            }
+
+            return BadRequest();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update([FromForm] UsuarioViewModel usuario)
+        public async Task<ActionResult> Update([FromForm] UsuarioViewModel usuario)
         {
             var response = await _usuarioService.Atualizar(usuario);
 
-            if (response.MsgErro.Values != null)
+            if (!response.Succeeded)
             {
-                TempData["Error"] = response.MsgErro.FirstOrDefault().Value;
+                TempData["Error"] = response.Errors.FirstOrDefault();
             }
 
             return RedirectToAction(nameof(Index));
         }
 
-      
-        public async Task<IActionResult> Delete(Guid id)
+
+        public async Task<ActionResult> Delete(Guid id)
         {
             var response = await _usuarioService.Deletar(id);
 
             if (response.MsgErro.Values != null)
-                TempData["Error"] = response.MsgErro.FirstOrDefault().Value;
-            else
+                TempData["Error"] = response.MsgErro.FirstOrDefault().Value;            else
                 TempData["Sucesso"] = "Excluido com sucesso";
 
             return RedirectToAction(nameof(Index));

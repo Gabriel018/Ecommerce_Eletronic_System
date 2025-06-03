@@ -9,7 +9,12 @@
         @foreach (var produto in Model)
         {
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="@produto.Descricao">
+                @if (produto.Foto != null)
+                {
+                    var base64 = Convert.ToBase64String(produto.Foto);
+                    var imgSrc = $"data:image/jpeg;base64,{base64}";
+                    <img class="card-img-top" src="@imgSrc" alt="" width="150" />
+                }
                 <div class="card-body">
                     <h5 class="card-title">@produto.Descricao</h5>
                     <p class="card-text">Preço: R$ @produto.Valor</p>

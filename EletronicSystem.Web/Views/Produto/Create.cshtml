@@ -1,7 +1,7 @@
 ﻿@model EletronicSystem.Business.ViewModels.ProdutoViewModel
 
 @{
-    var categorias = ViewData["Categoria"] as Array;  // Recebe o array de enum diretamente
+    var categorias = ViewData["Categoria"] as Array;  
 }
 
 <h1 class="text-center">Novo produto</h1>
@@ -11,8 +11,8 @@
         <form method="post" enctype="multipart/form-data" asp-validation-summary="ModelOnly">
             <div>
                 <label class="form-label mb-1">Foto</label>
-                <input type="file" id="Image" name="Image" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
+                <input type="file" id="Arquivo" name="Arquivo" class="form-control" />
+                <span asp-validation-for="Arquivo" class="text-danger"></span>
             </div>
             <div>
                 <label class="form-label mb-1">Descrição</label>

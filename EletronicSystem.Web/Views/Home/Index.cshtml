@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<EletronicSystem.Business.ViewModels.ProdutoViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 <div class="mb-3" style="max-width: 840px;">
@@ -14,32 +16,29 @@
         </div>
     </div>
 </div>
-<div class="container mt-5">
-    <h3 class="text-center">Tecnologia com baixo preço</h3>
-    <div class="card-group g-3">
-    <div class="card">
-        <img src="/Img/Headphones.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Headphones</h5>
-             <p class="card-text">Com os avanços nas tecnologias Bluetooth, os headphones sem fio modernos oferecem uma qualidade de som excepcional, comparável aos modelos com fio..</p>
-             <p class="card-text"><small class="text-muted">R$ 39,90</small></p>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/Img/MacBook Notebook.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">MacBook</h5>
-            <p class="card-text">MacBook é uma linha de computadores portáteis clássicos,voltados para o uso diário e atividades leves. Produzido até 2015</p>
-            <p class="card-text"><small class="text-muted">R$ 889,90</small></p>
-        </div>
-    </div>
-    <div class="card">
-        <img src="/Img/PC Gamer.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">PC Gamer</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">R$ 1389,90</small></p>
-        </div>
-    </div>
-</div>
+<div class="d-flex flex-wrap gap-3 justify-content-start">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var produto in Model)
+        {
+            <div class="card" style="width: 18rem;">
+
+                @if (produto.Foto != null)
+                {
+                    var base64 = Convert.ToBase64String(produto.Foto);
+                    var imgSrc = $"data:image/jpeg;base64,{base64}";
+                    <img class="card-img-top" src="@imgSrc" alt="" width="150" />
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@produto.Descricao</h5>
+                    <p class="card-text">Preço: R$ @produto.Valor</p>
+                    <p class="card-text">Categoria: @produto.Categoria</p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Nenhum produto encontrado para a categoria selecionada.</p>
+    }
 </div>

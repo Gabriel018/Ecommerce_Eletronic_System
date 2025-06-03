@@ -10,20 +10,29 @@
 </div>
 
 <table class="table">
-    <tread>
-        <th>Descriçao</th>
-        <th>Valor</th>
-        <th>Categoria</th>
-        <th></th>
-        <th></th>
-    </tread>
+    <thead>
+        <tr>
+            <th>Foto</th>
+            <th>Descriçao</th>
+            <th>Valor</th>
+            <th>Categoria</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
-        @if(Model != null)
+
+        @if (Model != null)
         {
             @foreach (var produto in Model)
             {
                 <tr>
-                    <td>@produto.Foto</td>
+                    @if (produto.Foto != null)
+                    {
+                        var base64 = Convert.ToBase64String(produto.Foto);
+                        var imgSrc = $"data:image/jpeg;base64,{base64}";
+                        <td><img src="@imgSrc" alt="" width="150" /></td>
+                    }
                     <td>@produto.Descricao</td>
                     <td>@produto.Valor</td>
                     <td>@produto.Categoria</td>
