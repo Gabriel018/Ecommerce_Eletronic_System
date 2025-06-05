@@ -1,4 +1,7 @@
-﻿@model EletronicSystem.Business.ViewModels.ProdutoViewModel
+﻿@model IEnumerable<EletronicSystem.Business.ViewModels.ProdutoViewModel>
+@using Microsoft.AspNetCore.Identity
+@using EletronicSystem.Domain.Entities;
+@inject SignInManager<Usuario> SignInManager
 
 @{
     ViewData["Tittle"] = "Lista de produtos";
@@ -23,25 +26,27 @@
 
         @if (Model != null)
         {
-            <tr>
-                @if (Model.Foto != null)
-                {
-                    var base64 = Convert.ToBase64String(Model.Foto);
-                    var imgSrc = $"data:image/jpeg;base64,{base64}";
-                    <td><img src="@imgSrc" alt="" width="100" height="100" /></td>
-                }
-                <td>Model.Descricao</td>
-                <td>Model.Valor</td>
-                <td>Model.Categoria</td>
-                <td><a asp-action="Update" asp-route-id="Model.Id">Editar</a></td>
-                <td><a asp-controller="Produto" asp-action="Delete" asp-route-id="@Model.Id">Excluir</a></td>
-            </tr>
+            var clienteNome = User?.Identity?.Name?.ToString();
+
+
+            @foreach (var produto in Model)
+            {
+                <tr>
+                    @if (produto.Foto != null)
+                    {
+                        var base64 = Convert.ToBase64String(produto.Foto);
+                        var imgSrc = $"data:image/jpeg;base64,{base64}";
+                        <td><img src="@imgSrc" alt="" width="100" height="100" /></td>
+                    }
+                    <td>@produto.Descricao</td>
+                    <td>@produto.Valor</td>
+                    <td>@produto.Categoria</td>
+                    <td><a asp-controller="Carrinho" asp-action="ExcluirItemCarrinho" asp-route-produtoId="@produto.Id" asp-route-clienteNome="@clienteNome">Excluir</a></td>
+                </tr>
+            }
         }
     </tbody>
 </table>
-
-
-
 @if (TempData["Sucesso"] != null)
 {
     <div class="alert alert-success">@TempData["Sucesso"]</div>
