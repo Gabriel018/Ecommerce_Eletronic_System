@@ -47,7 +47,7 @@ namespace EletronicSystem.Web.Controllers
         {
             var usuario = await _usuarioService.ObterPorId(id);
 
-            if (usuario != null) // NOSONAR
+            if (usuario != null)
 
             {
                 return Ok(usuario);

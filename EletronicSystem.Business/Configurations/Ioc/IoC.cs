@@ -21,6 +21,7 @@ namespace EletronicSystem.Business.Configurations.Ioc
         {
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ICacheRepository, CacheRepository>();
 
             return services;
         }
