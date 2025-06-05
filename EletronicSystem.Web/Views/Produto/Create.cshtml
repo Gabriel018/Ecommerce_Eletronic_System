@@ -10,24 +10,24 @@
     <div class="col-5">
         <form method="post" enctype="multipart/form-data" asp-validation-summary="ModelOnly">
             <div>
-                <label class="form-label mb-1">Foto</label>
+                <label for="Arquivo" class="form-label mb-1">Foto</label>
                 <input type="file" id="Arquivo" name="Arquivo" class="form-control" />
                 <span asp-validation-for="Arquivo" class="text-danger"></span>
             </div>
             <div>
-                <label class="form-label mb-1">Descrição</label>
+                <label for="Descricao" class="form-label mb-1">Descrição</label>
                 <input asp-for="Descricao" class="form-control">
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <div>
-                <label class="form-label mb-1">Valor</label>
+                <label for="Valor" class="form-label mb-1">Valor</label>
                 <input asp-for="Valor" class="form-control">
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div>
-                <label class="form-label mb-1">Categoria</label>
+                <label for="Categoria" class="form-label mb-1">Categoria</label>
                 <select asp-for="Categoria" class="form-control" id="Categoria">
-                    @foreach (var categoria in categorias)
+                    @foreach (var categoria in categorias!)
                     {
                         <option value="@categoria.ToString()">@categoria</option>
                     }

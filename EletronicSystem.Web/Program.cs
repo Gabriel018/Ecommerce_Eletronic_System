@@ -4,21 +4,10 @@ using EletronicSystem.Data.Data.Contexts;
 using EletronicSystem.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
-if (connectionString == null)
-{
-    Console.WriteLine("Erro ao se conectar");
-}
-else
-{
-    Console.WriteLine("Conectado com susesso");
-}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -29,7 +18,6 @@ builder.Services.AddIdentity<Usuario,IdentityRole>(options =>
     options.SignIn.RequireConfirmedAccount = true;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>();
-
 
 builder.Services.AddControllersWithViews();
 

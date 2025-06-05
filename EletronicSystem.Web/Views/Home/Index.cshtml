@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<EletronicSystem.Business.ViewModels.ProdutoViewModel>
+@using Microsoft.AspNetCore.Identity
+@using EletronicSystem.Domain.Entities;
+@inject SignInManager<Usuario> SignInManager
 
 @{
     ViewData["Title"] = "Home Page";
@@ -19,6 +22,8 @@
 <div class="d-flex flex-wrap gap-3 justify-content-start">
     @if (Model != null && Model.Any())
     {
+        var clienteNome = User?.Identity?.Name?.ToString();
+
         @foreach (var produto in Model)
         {
             <div class="card" style="width: 18rem;">
@@ -33,6 +38,8 @@
                     <h5 class="card-title">@produto.Descricao</h5>
                     <p class="card-text">Preço: R$ @produto.Valor</p>
                     <p class="card-text">Categoria: @produto.Categoria</p>
+
+                    <a class="btn btn-primary btn-lg" asp-controller="Carrinho" asp-action="AdicionarItemAlista" asp-route-produtoId="@produto.Id"  asp-route-clienteNome="@clienteNome">Adicionar ao Carrinho</a>
                 </div>
             </div>
         }
