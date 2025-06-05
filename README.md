@@ -1,9 +1,8 @@
 # Ecommerce-Eletronic-System MVC-DDD
 
-## Descriçao: Pequeno sistema simples de e-commerce com carrinho usando cachelocal
-
+## Descriçao: Pequeno sistema simples de e-commerce com carrinho usando somente controller,service,repository nada demais
 ### Arquitetura utilizada:
-Simples MCv em camadas utilizando o  DDD
+Simples MVC em camadas utilizando o  DDD
 
 ### Principais funçoes:
 1) Cadastro de clientes
